@@ -1,12 +1,24 @@
-import React from 'react'
-import Additem from './AddItem'
-import ItemsList from './ItemsList'
+// src/App.js
 
-export default function App() {
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { increment, decrement } from './action';
+
+function App() {
+  const count = useSelector((state) => state.count);
+  const dispatch = useDispatch();
+
   return (
-    <div>
-      <Additem></Additem>
-      <ItemsList></ItemsList>
+    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+      <h1>Counter: {count}</h1>
+      <button onClick={() => dispatch(increment())} style={{ marginRight: '10px' }}>
+        Increment
+      </button>
+      <button onClick={() => dispatch(decrement())}>
+        Decrement
+      </button>
     </div>
-  )
+  );
 }
+
+export default App;
